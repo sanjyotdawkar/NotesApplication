@@ -2,6 +2,7 @@ package com.projects.notes.service;
 
 import com.projects.notes.dto.EntryDTO;
 import com.projects.notes.entity.Entry;
+import com.projects.notes.exception.ResourceNotFoundException;
 import com.projects.notes.repository.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,14 +30,14 @@ public class service {
     }
     public EntryDTO getById(Long id) {
           Entry entry = repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Entry not found"));
+                .orElseThrow(() ->  new ResourceNotFoundException("Entry not found with id " + id));
           return convertToDTO(entry);
     }
 
     public void deleteById (Long id)
     {
         Entry entry = repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Entry not found"));
+                .orElseThrow(() -> new RuntimeException("Entry not found with id:"+id));
 
         repo.delete(entry);
 
