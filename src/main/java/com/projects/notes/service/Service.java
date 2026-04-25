@@ -5,14 +5,20 @@ import com.projects.notes.entity.Entry;
 import com.projects.notes.exception.ResourceNotFoundException;
 import com.projects.notes.repository.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+@org.springframework.stereotype.Service
 
-public class service {
-    @Autowired
+public class Service {
+
     public Repo repo;
+    public Service(Repo repo)
+    {
+        this.repo= repo;
+    }
+
+
+
     public List<EntryDTO> getAll() {
         return repo.findAll()
                 .stream()

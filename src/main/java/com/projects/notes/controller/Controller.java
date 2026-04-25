@@ -1,10 +1,8 @@
 package com.projects.notes.controller;
 
 import com.projects.notes.dto.EntryDTO;
-import com.projects.notes.entity.Entry;
-import com.projects.notes.service.service;
+import com.projects.notes.service.Service;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +12,14 @@ import java.util.List;
 @RequestMapping("/notes")
 public class Controller {
 
-    @Autowired
-    public service service;
+
+    public Controller(Service service) {
+        this.service = service;
+    }
+
+    public final Service service;
+
+
 
     @GetMapping()
 
