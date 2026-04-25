@@ -3,6 +3,7 @@ package com.projects.notes.controller;
 import com.projects.notes.dto.EntryDTO;
 import com.projects.notes.entity.Entry;
 import com.projects.notes.service.service;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class Controller {
     }
 
     @PostMapping()
-    public EntryDTO create( @RequestBody EntryDTO dto)
+    public EntryDTO create(@Valid @RequestBody EntryDTO dto)
     {
        return service.create(dto);
     }
@@ -42,7 +43,7 @@ public class Controller {
     }
 
     @PutMapping("/{id}")
-    public EntryDTO update(@PathVariable Long id, @RequestBody EntryDTO dto) {
+    public EntryDTO update(@PathVariable Long id,@Valid @RequestBody EntryDTO dto) {
         return service.updateById(id, dto);
     }
 
